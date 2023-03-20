@@ -1,0 +1,22 @@
+Troubleshoot Inter-VLAN Routing
+
+"show ip interface brief" do first 
+show interface g0/1.10
+show interface g0/1.30
+"show interface trunk" do first 
+
+whats wrong, how to fix it.
+GigabitEthernet0/1.10  172.17.10.1     YES manual administratively down down this needs to be up
+wrong DR on pc 2 fix it 
+no trunks have been configured on the router 
+
+int g0/1.10 and 30 had the worng vlans assigend to them.
+
+Hint: If you need to reset a switchport to default configuration, use the default interface interface name command.
+
+
+Investigate STP Loop Prevention
+show spanning-tree vlan 1 
+show interface | include ethernet 
+show interface status 
+show interface trunk 
