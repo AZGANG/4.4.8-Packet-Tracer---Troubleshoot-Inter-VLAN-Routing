@@ -5,18 +5,37 @@ show interface g0/1.10
 show interface g0/1.30
 "show interface trunk" do first 
 
-whats wrong, how to fix it.
-GigabitEthernet0/1.10  172.17.10.1     YES manual administratively down down this needs to be up
-wrong DR on pc 2 fix it 
-no trunks have been configured on the router 
+Part 1: Locate Network Problems
+GigabitEthernet0/1.10  172.17.10.1     YES manual administratively down down "needs to be up and up"
 
-int g0/1.10 and 30 had the worng vlans assigend to them.
+int g0/1.10 has the wrong vlan configured 
+int g0/1.30 has the wrong vlan as well 
+no trunks have been configured on R1 same for sw1
+wrong DG address 
+
+
+Part 2: Implement the Solution
+int g0/1.10
+no shut 
+int g0/1.10
+encapsulation dot1q 40 
+
+int g0/1.30
+encapsulation dot1q 30
+
+int g0/1.10
+encapsulation dot1q 10
+
+SW1
+int g0/1 
+switchport mode trunk 
+
+fix end device address 
+
+Part 3: Verify Network Connectivityint 
+do pings 
+
 
 Hint: If you need to reset a switchport to default configuration, use the default interface interface name command.
 
 
-Investigate STP Loop Prevention
-show spanning-tree vlan 1 
-show interface | include ethernet 
-show interface status 
-show interface trunk 
